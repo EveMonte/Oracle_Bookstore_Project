@@ -1,0 +1,120 @@
+﻿<UserControl x:Class="Курсач.UserControls.BasketBook"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Курсач.UserControls"
+             mc:Ignorable="d" >
+    <Grid Style="{DynamicResource GridStyle}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.9*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="75" />
+        </Grid.RowDefinitions>
+        <Image HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Grid.Column="0"
+               Grid.Row="0"
+               Grid.RowSpan="4"
+               Source="{Binding COVER}" />
+        <StackPanel Grid.Row="0"
+                    Grid.Column="1"
+                    HorizontalAlignment="Stretch">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="16"
+                           Margin="15, 5, 5, 0"
+                           Text="{DynamicResource m_BookTitle}" />
+                <TextBlock FontSize="16"
+                           TextWrapping="Wrap"
+                           Width="300"
+                           Margin="0, 5, 0, 0"
+                           Text="{Binding TITLE}" />
+            </StackPanel>
+            <TextBlock FontSize="16"
+                       Margin="15, 5, 0, 0"
+                       Text="{Binding Genre}" />
+            <StackPanel Margin="15, 5, 0, 0"
+                        Orientation="Horizontal">
+                <TextBlock FontSize="16"
+                           Margin="0, 0, 5, 0"
+                           Text="{DynamicResource m_Author}" />
+                <TextBlock FontSize="16"
+                           Text="{Binding AUTHOR}" />
+            </StackPanel>
+            <DockPanel>
+                <StackPanel VerticalAlignment="Center"
+                            Margin="15, 7.5, 0, 7.5"
+                            DockPanel.Dock="Left"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Stretch">
+                    <TextBlock FontSize="16"
+                               Margin="0, 0, 5, 0"
+                               Text="{Binding RATING}"
+                               VerticalAlignment="Center" />
+                    <materialDesign:PackIcon Margin="0, 0, 5, 0"
+                                             Kind="Star"
+                                             VerticalAlignment="Center" />
+                    <TextBlock FontSize="16"
+                               Margin="0, 0, 5, 0"
+                               VerticalAlignment="Center"
+                               Text="{Binding NUMBEROFVOICES}" />
+                    <materialDesign:RatingBar VerticalAlignment="Center"
+                                              Value="{Binding Mark, Mode=TwoWay}"
+                                              x:Name="rating"
+                                              HorizontalAlignment="Right"
+                                              Foreground="#B56F2F"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            DockPanel.Dock="Right"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Right">
+                    <Button Template="{DynamicResource LightButton2}"
+                            x:Name="SetMark"
+                            Margin="15 0"
+                            Width="200"
+                            Command="{Binding DataContext.MarkCommand, RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
+                            CommandParameter="{Binding BOOK_ID}"
+                            HorizontalAlignment="Right"
+                            Content="{DynamicResource m_RateTheBook}">
+                    </Button>
+                </StackPanel>
+            </DockPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="1"
+                    Orientation="Horizontal"
+                    Margin="10"
+                    HorizontalAlignment="Center">
+            <Button Template="{DynamicResource LightButton}"
+                    Width="200" 
+                    Height="50"
+                    FontSize="16"
+                    Command="{Binding DataContext.BuyCommand, RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
+                    CommandParameter="{Binding BOOK_ID}"
+                    Padding="0"
+                    Content="{DynamicResource m_BuyTheBook}" />
+            <Button Template="{DynamicResource DarkButton}"
+                    Width="200"
+                    Margin="20, 0, 0, 0"
+                    FontSize="16"
+                    Content="{DynamicResource m_RemoveFromBasket}"
+                    Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
+                    CommandParameter="{Binding BOOK_ID}"
+                    Height="50" />
+        </StackPanel>
+        <TextBlock FontSize="16"
+                   TextWrapping="Wrap"
+                   VerticalAlignment="Top"
+                   Grid.Row="1"
+                   Margin="15, 5, 10, 0"
+                   Grid.RowSpan="2"
+                   Grid.Column="1"
+                   Text="{Binding DESCRIPTION}" />
+    </Grid>
+</UserControl>

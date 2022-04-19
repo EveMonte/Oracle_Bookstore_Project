@@ -1,0 +1,128 @@
+﻿<Page x:Class="Курсач.Pages.ListOfBooks"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Курсач.Pages"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:userControls="clr-namespace:Курсач.UserControls"
+      mc:Ignorable="d" 
+      Title="ListOfBooks">
+    <Grid Style="{DynamicResource GridMainStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Width="1200">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1.5*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="2.5*" />
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0"
+                   Margin="0, 5, 0, 0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Bottom"
+                   Style="{DynamicResource ImageStyle}" >
+                <Image.Effect>
+                    <DropShadowEffect BlurRadius="10"
+                                      Opacity="0.9"
+                                      ShadowDepth="2"/>
+                </Image.Effect>
+            </Image>
+            <TextBox VerticalAlignment="Center"
+                     Grid.Column="1"
+                     x:Name="Search"
+                     materialDesign:HintAssist.Hint="{DynamicResource m_Filter}"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     FontSize="16"
+                     MaxHeight="50"
+                     Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Grid.Column="2"
+                       Text="{DynamicResource m_Main}"
+                       FontFamily="Tahoma"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontSize="24"/>
+            <StackPanel Orientation="Horizontal"
+                        Grid.Column="3"
+                        Margin="0, 0, 20, 0"
+                        HorizontalAlignment="Right">
+                <ComboBox 
+                          Padding="0"
+                          Margin="0, 0, 10, 0"
+                          FontSize="16"
+                          Width="180"
+                          SelectedIndex="0"
+                          SelectedItem="{Binding SelectedGenre}"
+                          ItemsSource="{Binding Genres}"
+                          MaxDropDownHeight="300">
+                    <ComboBox.ItemTemplate >
+                        <DataTemplate>
+                            <TextBlock Margin="0" Text="{Binding GENRE}"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Left"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button Content="{DynamicResource m_Search}"
+                        VerticalAlignment="Center"
+                        Template="{DynamicResource LightButton2}"
+                        Command="{Binding FindByGenreCommand}"
+                        />
+                <Button Content="{DynamicResource m_ClearFilter}"
+                        VerticalAlignment="Center"
+                        Width="150"
+                        Margin="15, 0, 0, 0"
+                        Template="{DynamicResource LightButton}"
+                        Command="{Binding ClearCommand}"
+                        />
+            </StackPanel>
+        </Grid>
+        <ScrollViewer Grid.Column="0" Grid.Row="1"
+                 Grid.ColumnSpan="4">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="150"/>
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Image Source="{Binding ImageSourceUp}"
+                       Grid.Row="0"
+                       Margin="200 15"
+                       Width="Auto"
+                       Height="Auto"
+                       Opacity="{Binding OpacityAnimationUp}"/>
+                <Image Source="{Binding ImageSourceDown}"
+                       Grid.Row="0"
+                       Margin="300 15"
+                       Width="Auto"
+                       Height="Auto"
+                       Opacity="{Binding OpacityAnimationDown}"/>
+                <ListBox Margin="200 0"
+                         Grid.Row="1"
+                 ItemsSource="{Binding Books, Mode=TwoWay}"
+                 SelectedItem="{Binding SelectedBook}"
+                 ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                 x:Name="listOfBooks">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border>
+                                <userControls:BookUserControl Width="150" Height="330"  />
+                                <Border.InputBindings>
+                                    <MouseBinding MouseAction="{x:Static MouseAction.LeftDoubleClick}"
+                                          Command="{Binding RelativeSource={RelativeSource AncestorType=ListBox}, Path=DataContext.OpenFullInfo}" />
+                                </Border.InputBindings>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel HorizontalAlignment="Center"  />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

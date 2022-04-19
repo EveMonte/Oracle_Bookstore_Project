@@ -1,0 +1,102 @@
+﻿<Application x:Class="Курсач.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Курсач"
+             xmlns:userControls="clr-namespace:Курсач.UserControls"
+             xmlns:pages="clr-namespace:Курсач.Pages"
+             xmlns:viewmodels="clr-namespace:Курсач.ViewModels"
+             Startup="OnStartup"
+             ShutdownMode="OnLastWindowClose"
+             LoadCompleted="Application_LoadCompleted">
+    <Application.Resources>
+
+        <ResourceDictionary>
+            <DataTemplate DataType="{x:Type viewmodels:SignInVM}">
+                <local:FormControl/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:RegistrationViewModel}">
+                <local:RegisterControl />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:SendMessageViewModel}">
+                <local:SendMessageControl />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:FullInfoViewModel}">
+                <userControls:FullInfo />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:ListOfBooksViewModel}">
+                <pages:ListOfBooks />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:AdditionalInfoViewModel}">
+                <pages:AdditionalInfo />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:MainFrameViewModel}">
+                <local:MainWindow />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:YourBooksViewModel}">
+                <pages:YourBooks />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:YourBookViewModel}">
+                <userControls:YourBook />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:BasketVM}">
+                <pages:BasketPage />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:UserPageVM}">
+                <pages:UserPage />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:SubscriptionVM}">
+                <pages:SubscriptionPage />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:AddCreditCardVM}">
+                <userControls:AddCreditCard />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:WorkframeViewModel}">
+                <local:Workframe />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:BaseDialogWindowVM}">
+                <userControls:ConfirmPurchase />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:SettingsVM}">
+                <pages:Settings />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:AdminsVM}">
+                <pages:AdminsPage />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:UsersPageVM}">
+                <pages:UsersPage />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:ListOfBooksAdminVM}">
+                <pages:ListOfBooksAdmin />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:FullInfoAdminVM}">
+                <userControls:FullInfoAdmin />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:ForgotPasswordVM}">
+                <userControls:ForgotPassword />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:AdvertismentsVM}">
+                <pages:Advertisements />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:AppInfoVM}">
+                <userControls:AppInfo />
+            </DataTemplate>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Purple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/ToastNotifications.Messages;component/Themes/Default.xaml" />
+                <ResourceDictionary Source="Themes\darkTheme.xaml" />
+                <ResourceDictionary Source="Themes\lightTheme.xaml" />
+                <ResourceDictionary Source="Templates\ErrorMessage.xaml" />
+
+                <ResourceDictionary Source="Templates\LightButtonTemplate.xaml" />
+                <ResourceDictionary Source="Templates\LightButton2Template.xaml" />
+                <ResourceDictionary Source="Templates\DarkButtonTemplate.xaml" />
+                <ResourceDictionary Source="Templates\RedButtonTemplate.xaml" />
+
+                <ResourceDictionary Source="Resources\lang.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="Курсач.UserControls.ConfirmPurchase"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Курсач.UserControls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="600">
+    <Grid Style="{DynamicResource GridMainStyle}"
+          DataContext="{Binding CurrentVM}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="40" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <Border Background="#B56F2F"
+                Grid.Row="0"
+                Grid.ColumnSpan="4" />
+        <Button Template="{DynamicResource RedButton}"
+                Grid.Column="0"
+                Padding="0"
+                Width="Auto"
+                Height="Auto"
+                Command="{Binding CancelCommand}"
+                Grid.Row="0">
+            <materialDesign:PackIcon Kind="ArrowBack"
+                                     Foreground="White"
+                                     Height="30"
+                                     Width="30"/>
+        </Button>
+        <TextBlock Text="{DynamicResource m_ConfirmationOfPurchase}"
+                   Foreground="White"
+                   Grid.Column="1"
+                   Grid.ColumnSpan="2"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontSize="18"
+                   Grid.Row="0" />
+        <Button Grid.Row="2"
+                Grid.Column="1"
+                Width="200"
+                VerticalAlignment="Bottom"
+                Height="50"
+                FontSize="16"
+                Content="{DynamicResource m_CancelPurchase}"
+                Command="{Binding CancelCommand}"
+                Template="{DynamicResource LightButton}" />
+        <Button Grid.Row="2"
+                Grid.Column="2"
+                Width="200"
+                Height="50"
+                FontSize="16"
+                VerticalAlignment="Bottom"
+                Command="{Binding BuyCommand}"
+                Content="{DynamicResource m_ConfirmPurchase}"
+                Template="{DynamicResource DarkButton}" />
+        <TextBlock Text="{Binding InfoText}"
+                   Grid.Row="1"
+                   Grid.Column="1"
+                   Grid.ColumnSpan="2"
+                   FontSize="18"
+                   TextWrapping="Wrap"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center" />
+    </Grid>
+
+</UserControl>

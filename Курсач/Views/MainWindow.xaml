@@ -1,0 +1,126 @@
+﻿<Window x:Class="Курсач.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Курсач"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Bookварь" WindowState="Maximized"
+        Icon="\Media\Логотип.png"
+        Style="{DynamicResource WindowStyle}"
+        MinWidth="1350" MinHeight="760">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type local:FormControl}"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="360*"/>
+            <ColumnDefinition Width="350*"/>
+            <ColumnDefinition Width="360*"/>
+            <ColumnDefinition Width="450"/>
+            <ColumnDefinition Width="428*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions >
+            <RowDefinition Height="130*"/>
+            <RowDefinition Height="360"/>
+            <RowDefinition Height="232*"/>
+            <RowDefinition Height="250*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="3"
+                    Grid.Column="0"
+                    Background="White"
+                    Grid.ColumnSpan="5"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+            <TextBlock TextAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="20"
+                       FontFamily="Tahoma" />
+
+        </StackPanel>
+
+                <Image Grid.Row="1"
+                    Grid.Column="1"
+                       Style="{DynamicResource ImageStyle}" >
+                    <Image.Effect>
+                        <DropShadowEffect BlurRadius="10"
+                                          Opacity="0.9"
+                                          ShadowDepth="2"/>
+                    </Image.Effect>
+                </Image>
+        <ContentControl Grid.Row="1"
+                        Grid.Column="3"
+                        Width="450"
+                        Height="360"
+                        Content="{Binding SelectedViewModel, Mode=TwoWay}" >
+            
+        </ContentControl>
+        <TextBlock TextWrapping="Wrap"
+                   Margin="0, 18, 0, 0"
+                   TextAlignment="Center"
+                   Grid.Column="3"
+                   Grid.Row="2"
+                   FontSize="18"
+                   FontFamily="Tahoma" 
+                   Text="{DynamicResource m_SignInText}"/>
+        <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" Background="White">
+        </StackPanel>
+        <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" Style="{DynamicResource GridStyle}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*" />
+                <ColumnDefinition Width="2.2*" />
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="3.2*" />
+                <ColumnDefinition Width="1.5*" />
+                <ColumnDefinition Width="1.5*" />
+                <ColumnDefinition Width="0.4*" />
+                <ColumnDefinition Width="1.5*" />
+                <ColumnDefinition Width="0.4*" />
+                <ColumnDefinition Width="1.5*" />
+                <ColumnDefinition Width="1.5*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <StackPanel HorizontalAlignment="Left"
+                        Grid.Row="0"
+                        Grid.RowSpan="3"
+                        Grid.Column="1"
+                        VerticalAlignment="Center">
+                <TextBlock MaxWidth="170"
+                           Text="BookВарь©2021"
+                           Cursor="Hand"
+                           FontSize="20"
+                           FontFamily="Tahoma"
+                           Margin="0,0,0,10" />
+            </StackPanel>
+            <TextBlock Grid.RowSpan="3" TextWrapping="Wrap" VerticalAlignment="Center"
+                       Grid.Row="0" Grid.Column="3" FontSize="20"
+                       FontFamily="Tahoma" TextAlignment="Center"
+                       Text="{DynamicResource m_Availability}" />
+            <Image Grid.Row="1"
+                   Cursor="Hand"
+                   Grid.Column="5"
+                       HorizontalAlignment="Left"
+                   MaxHeight="45"
+                   VerticalAlignment="Center"
+                       Source="\Media\gugl_play.png"/>
+                <Image Cursor="Hand"
+                       Grid.Column="7"
+                       HorizontalAlignment="Left"
+                       MaxHeight="45" 
+                       Grid.Row="1"
+                       VerticalAlignment="Center"
+                       Source="\Media\apple.png"/>
+                <Image Cursor="Hand" Grid.Column="9"
+                       HorizontalAlignment="Left"
+                       MaxHeight="45"
+                       Grid.Row="1"
+                       VerticalAlignment="Center"
+                       Source="\Media\appGallery.png"/>
+        </Grid>            
+    </Grid>
+</Window>

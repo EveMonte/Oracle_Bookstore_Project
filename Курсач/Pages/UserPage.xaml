@@ -1,0 +1,338 @@
+﻿<Page x:Class="Курсач.Pages.UserPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:Курсач.Pages"
+      xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+      xmlns:components="clr-namespace:Курсач.Helpers"
+      mc:Ignorable="d" 
+      Title="UserPage"
+      Background="#F4F2EF">
+    <Grid Margin="0, 0, 18, 0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1.9*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="400" />
+            <ColumnDefinition Width="400" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Border Background="White"
+                Grid.Column="1"
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                Grid.RowSpan="7" />
+        <TextBlock FontSize="24"
+                   Text="{DynamicResource m_UserAccount}"
+                   Grid.Row="0"
+                   Grid.ColumnSpan="4"
+                   FontFamily="Tahoma"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
+        <Grid Grid.Row="1"
+              Grid.RowSpan="2"
+              Grid.Column="1"
+              HorizontalAlignment="Stretch"
+              Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*" />
+                <ColumnDefinition Width="1.25*" />
+                <ColumnDefinition Width="1.5*" />
+            </Grid.ColumnDefinitions>
+            <materialDesign:PackIcon Kind="User"
+                                     Grid.Row="0"
+                                     Grid.RowSpan="3"
+                                     HorizontalAlignment="Stretch"
+                                     VerticalAlignment="Stretch"
+                                     Width="100"
+                                     Height="100"/>
+                    <TextBlock Text="{DynamicResource m_SecondName}"
+                               Grid.Row="1"
+                               Grid.Column="0"
+                               HorizontalAlignment="Right"
+                               Margin="0, 0, 15, 0"
+                               FontSize="16"/>
+                    <TextBlock Text="{Binding SECONDNAME}"
+                               Grid.Column="1"
+                               Grid.Row="1"
+                               FontSize="16"/>
+                    <TextBlock Text="{DynamicResource m_Name}"
+                               Grid.Row="2"
+                               Grid.Column="0"
+                               HorizontalAlignment="Right"
+                               Margin="0, 0, 15, 0"
+                               FontSize="16"/>
+                    <TextBlock Text="{Binding NAME}"
+                               Grid.Column="1"
+                               Grid.Row="2"
+                               FontSize="16"/>
+            <Button Content="{DynamicResource m_SignOut}"
+                    Width="220"
+                    HorizontalAlignment="Left"
+                    Margin="10 0"
+                    VerticalAlignment="Bottom"
+                    Grid.Column="2"
+                    Grid.Row="1"
+                    Command="{Binding SignOutCommand}"
+                    Template="{DynamicResource DarkButton}" />
+            <TextBlock Text="{DynamicResource m_SubscriptionStatus}"
+                       FontSize="16"
+                       HorizontalAlignment="Right"
+                       Grid.Row="3"
+                       Margin="0, 0, 15, 0"
+                       VerticalAlignment="Bottom"
+                       Grid.Column="0"/>
+            <TextBlock Text="{Binding Subscription, Mode=TwoWay}"
+                       Grid.Column="1"
+                       Grid.Row="3"
+                       VerticalAlignment="Bottom"
+                       FontSize="16"/>
+            <TextBlock Text="{DynamicResource m_CardNumber2}"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Bottom"
+                       Grid.Column="0"
+                       Margin="0, 0, 15, 0"
+                       Grid.Row="4"
+                       FontSize="16"/>
+            <TextBlock Text="{Binding CreditCard, Mode=TwoWay}"
+                       Grid.Row="4"
+                       VerticalAlignment="Bottom"
+                       HorizontalAlignment="Left"
+                       Grid.Column="1"
+                       FontSize="16"/>
+            <Button Content="{DynamicResource m_Change}"
+                    Template="{DynamicResource LightButton2}"
+                    Grid.Column="2"
+                    Grid.Row="4"
+                    Width="220"
+                    Margin="10 0"
+                    Command="{Binding ApplyCreditCardCommand}"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom" />
+            <TextBlock Text="{DynamicResource m_NumberOfBooksOnTheShelf}"
+                       Grid.Column="0"
+                       Grid.Row="5"
+                       Margin="0, 0, 15, 0"
+                       VerticalAlignment="Bottom"
+                       HorizontalAlignment="Right"
+                       FontSize="16" />
+            <TextBlock Text="{Binding YourBooks, Mode=TwoWay}"
+                       Grid.Row="5"
+                       VerticalAlignment="Bottom"
+                       Grid.Column="1"
+                       FontSize="16" />
+            <TextBlock Text="{DynamicResource m_NumberOfMarks}"
+                       Grid.Column="0"
+                       VerticalAlignment="Bottom"
+                       Grid.Row="6"
+                       Margin="0, 0, 15, 0"
+                       HorizontalAlignment="Right"
+                       FontSize="16" />
+            <TextBlock Text="{Binding Marks, Mode=TwoWay}"
+                       Grid.Row="6"
+                       VerticalAlignment="Bottom"
+                       Grid.Column="1"
+                       FontSize="16" />
+        </Grid>
+        <StackPanel Grid.Row="3"
+                    Grid.Column="1"
+                    Grid.RowSpan="4"
+                    Grid.ColumnSpan="2"
+                    VerticalAlignment="Top"                  
+                    HorizontalAlignment="Stretch">
+            <Expander Header="{DynamicResource m_ChangeEmail}"
+                      Focusable="False"
+                      Background="White">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.5*" />
+                        <ColumnDefinition Width="1.25*" />
+                        <ColumnDefinition Width="1.5*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{DynamicResource m_EnterNewEmail}"
+                               FontSize="16"
+                               Grid.Column="0"
+                               Grid.Row="0"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Bottom"
+                               Margin="0, 0, 15, 0"/>
+                    <TextBox Text="{Binding NewEmail, Mode=TwoWay}"
+                             Grid.Column="1"
+                             Grid.Row="0"
+                             FontSize="16"
+                             HorizontalAlignment="Left"
+                             Width="220"
+                             Style="{DynamicResource MaterialDesignTextBox}"/>
+                    <Button Content="{DynamicResource m_SendCodeToMail}"
+                            Template="{DynamicResource DarkButton}"
+                            Margin="10 0"
+                            Width="220"
+                            Grid.Column="2"
+                            HorizontalAlignment="Left"
+                            Grid.Row="0"
+                            Command="{Binding SendEmailMessageCommand}"/>
+                    <TextBlock Text="{DynamicResource m_EnterConfirmationCode}"
+                               Grid.Column="0"
+                               VerticalAlignment="Bottom"
+                               HorizontalAlignment="Right"
+                               FontSize="16"
+                               Margin="0, 0, 15, 0"
+                               Grid.Row="1" />
+                    <TextBox Text="{Binding Code, Mode=TwoWay}"
+                             FontSize="16"
+                             Grid.Row="1"
+                             Grid.Column="1"
+                             HorizontalAlignment="Left"
+                             Width="220"
+                             Height="40"
+                             Style="{DynamicResource MaterialDesignTextBox}" />
+                    <Button Template="{DynamicResource LightButton2}"
+                            Command="{Binding ApplyEmailCommand}"
+                            Content="{DynamicResource m_Confirm}"
+                            Width="220"                         
+                            Padding="0"
+                            Margin="10 0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Bottom"
+                            Grid.Column="2"
+                            Grid.Row="1"/>
+                </Grid>
+            </Expander>
+            <Expander Header="{DynamicResource m_ChangePassword}"
+                      Background="White">
+                <Grid x:Name="passwordStk"
+                      Grid.Column="1"
+                      Grid.Row="4"
+                      Grid.RowSpan="2"
+                      Grid.ColumnSpan="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.5*" />
+                        <ColumnDefinition Width="1.25*" />
+                        <ColumnDefinition Width="1.5*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{DynamicResource m_EnterOldPassword}"
+                               FontSize="16"
+                               VerticalAlignment="Bottom"
+                               HorizontalAlignment="Right"
+                               Grid.Column="0"
+                               Grid.Row="0"
+                               Margin="0, 0, 15, 0"/>
+                    <PasswordBox Width="220"
+                                 Grid.Row="0"
+                                 Height="40"
+                                 Grid.Column="1"
+                                 VerticalAlignment="Bottom"
+                                 HorizontalAlignment="Left"
+                                 FontSize="16">
+                        <i:Interaction.Behaviors>
+                            <components:PasswordBoxBindingBehavior Password="{Binding OldPassword}"/>
+                        </i:Interaction.Behaviors>
+                    </PasswordBox>
+                    <TextBlock Text="{DynamicResource m_EnterNewPassword}"
+                               FontSize="16"
+                               Grid.Row="1"
+                               Grid.Column="0"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Bottom"
+                               Margin="0, 0, 15, 0"/>
+                    <PasswordBox Width="220"
+                                 Grid.Column="1"
+                                 Grid.Row="1"
+                                 HorizontalAlignment="Left"
+                                 VerticalAlignment="Bottom"
+                                 Height="40"
+                                 FontSize="16">
+                        <i:Interaction.Behaviors>
+                            <components:PasswordBoxBindingBehavior Password="{Binding FirstPassword}"/>
+                        </i:Interaction.Behaviors>
+                    </PasswordBox>
+                    <TextBlock Text="{DynamicResource m_RepeatNewPassword}"
+                               FontSize="16"
+                               Grid.Row="2"
+                               Grid.Column="0"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Bottom"
+                               Margin="0, 0, 15, 0"/>
+                    <PasswordBox Width="220"
+                                 VerticalAlignment="Bottom"
+                                 Grid.Column="1"
+                                 Grid.Row="2"
+                                 Height="40"
+                                 FontSize="16"
+                                 HorizontalAlignment="Left">
+                        <i:Interaction.Behaviors>
+                            <components:PasswordBoxBindingBehavior Password="{Binding SecondPassword}"/>
+                        </i:Interaction.Behaviors>
+                    </PasswordBox>
+                    <Button Template="{DynamicResource DarkButton}"
+                            Content="{DynamicResource m_SendCodeToMail}"
+                            Width="220"
+                            Margin="10 0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Bottom"
+                            Grid.Column="2"
+                            x:Name="PasswordBtn"
+                            Command="{Binding SendPasswordMessageCommand}"
+                            CommandParameter="{Binding }"
+                            Grid.Row="2"/>
+                    <TextBlock Text="{DynamicResource m_EnterConfirmationCode}"
+                               Grid.Column="0"
+                               VerticalAlignment="Bottom"
+                               HorizontalAlignment="Right"
+                               FontSize="16"
+                               Margin="0, 0, 15, 0"
+                               Grid.Row="3" />
+                    <TextBox Text="{Binding Code2, Mode=TwoWay}"
+                             FontSize="16"
+                             Grid.Row="3"
+                             Grid.Column="1"
+                             HorizontalAlignment="Left"
+                             Width="220"
+                             Height="40"
+                             Style="{DynamicResource MaterialDesignTextBox}" />
+                    <Button Template="{DynamicResource LightButton2}"
+                            Command="{Binding ApplyPasswordCommand}"
+                            Content="{DynamicResource m_Confirm}"
+                            Width="220"
+                            Padding="0"
+                            Margin="10 0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Bottom"
+                            Grid.Column="2"
+                            Grid.Row="3"/>
+                </Grid>
+            </Expander>
+        </StackPanel>        
+    </Grid>
+</Page>

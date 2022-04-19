@@ -1,0 +1,153 @@
+﻿<UserControl x:Class="Курсач.UserControls.AddCreditCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Курсач.UserControls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             x:Name="addCreditCard"
+             d:DesignHeight="350" d:DesignWidth="600">
+    <Grid Style="{DynamicResource GridMainStyle}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="0.2*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="0.2*" />
+            <ColumnDefinition Width="40" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="3.5*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <Border Background="#B56F2F"
+                Grid.ColumnSpan="5"/>
+        <Button Grid.Column="0"
+                Padding="0"
+                Width="Auto"
+                Height="Auto"
+                Template="{DynamicResource RedButton}"
+                Command="{Binding CloseUserPageCommand}"
+                Grid.Row="0">
+            <materialDesign:PackIcon Kind="ArrowBack"
+                                     Foreground="White"
+                                     Width="30"
+                                     Height="30" />
+        </Button>
+        <TextBlock Text="{DynamicResource m_AddCreditCard}"
+                   Foreground="White"
+                   Grid.Column="1"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="18"
+                   Grid.ColumnSpan="3" />
+        <Border Background="White"
+                Grid.Column="2"
+                Margin="0, 25, 0, 0"
+                CornerRadius="15"
+                Grid.Row="1" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.25*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="2.6*" />
+                    <RowDefinition Height="2.6*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                            HorizontalAlignment="Right">
+                    <TextBlock Text="{DynamicResource m_CardNumber}"
+                               FontFamily="Tahoma"
+                               Margin="0 5"
+                               FontSize="14"/>
+                    <TextBox Width="150"
+                             Background="#F4F2EF"
+                             Style="{DynamicResource MaterialDesignTextBox}"
+                             materialDesign:HintAssist.Hint="{DynamicResource m_16digits}"
+                             Text="{Binding CREDIT_CARD}"
+                             Margin="0, 0, 0, 12"
+                             MaxLength="16"/>
+                    <TextBlock Text="{Binding CardNumberValidation}"
+                               Style="{DynamicResource ErrorMessage}" />
+                </StackPanel>
+                <StackPanel Grid.Row="2"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            VerticalAlignment="Bottom"
+                            Margin="0, 0, 0, 7"
+                            Orientation="Vertical"
+                            HorizontalAlignment="Right">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{DynamicResource m_Validity}"
+                               TextAlignment="Right"
+                               VerticalAlignment="Top"
+                               Width="80"
+                               TextWrapping="Wrap"
+                               Margin="0, 0, 10, 0"
+                               FontFamily="Tahoma"
+                               FontSize="14"/>
+                        <TextBox Width="60"
+                                Style="{DynamicResource MaterialDesignTextBox}"
+                                materialDesign:HintAssist.Hint="{DynamicResource m_MM/YY}"
+                                Background="#F4F2EF"
+                                 Height="25"
+                                 VerticalContentAlignment="Bottom"
+                             Text="{Binding Validity}"/>
+                    </StackPanel>
+                    <TextBlock Style="{DynamicResource ErrorMessage}"
+                                   Text="{Binding ValidityValidation}" />
+                </StackPanel>
+                <StackPanel Grid.Row="2"
+                            Grid.Column="2"
+                            Grid.ColumnSpan="2"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Center">
+                    <TextBlock Text="CVC/CVV"
+                               FontFamily="Tahoma"
+                               FontSize="14"
+                               HorizontalAlignment="Center"
+                               Margin="0 5"
+                               />
+                    <TextBox Width="60"
+                             Style="{DynamicResource MaterialDesignTextBox}"
+                             Background="#F4F2EF"
+                             MaxLength="3"
+                             Margin="0, 0, 0, 12"
+                             materialDesign:HintAssist.Hint="{DynamicResource m_3digits}"
+                             Text="{Binding CVV}"/>
+                    <TextBlock Style="{DynamicResource ErrorMessage}"
+                               Text="{Binding CVVValidation}" />
+                </StackPanel>
+            </Grid>
+        </Border>
+        <DockPanel Grid.Row="2"
+                    HorizontalAlignment="Stretch"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3">
+            <Button Template="{DynamicResource LightButton}"
+                Width="200"
+                Height="50"
+                VerticalAlignment="Bottom"
+                Command="{Binding AddCardCommand}"
+                Content="{DynamicResource m_AddCard}"
+                FontSize="16"/>
+            <Button Template="{DynamicResource DarkButton}"
+                Width="200"
+                Height="50"
+                    HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Command="{Binding RemoveCardCommand}"
+                Content="{DynamicResource m_Remove}"
+                FontSize="16"/>
+        </DockPanel>
+
+    </Grid>
+</UserControl>
