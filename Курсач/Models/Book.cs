@@ -20,6 +20,8 @@ namespace Курсач.Models
 
         public string COVER { get; set; }
 
+        public string GENRE_NAME { get; set; }
+
         public int BY_SUBSCRIPTION { get; set; }
 
         public decimal RATING { get; set; }

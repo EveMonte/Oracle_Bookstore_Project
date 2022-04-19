@@ -49,11 +49,14 @@ namespace Курсач.ViewModels
                         command.Parameters.Add("NAME", OracleDbType.Varchar2).Value = newUser.NAME;
                         command.Parameters.Add("PASSWORD", OracleDbType.Varchar2).Value = newUser.PASSWORD;
                         command.Parameters.Add("ACCESS_LVL", OracleDbType.Decimal).Value = 3m;
+                        command.Parameters.Add("OUT_ID", OracleDbType.Int32).Direction = ParameterDirection.Output;
                         con.Open();
                         command.ExecuteNonQuery();
+                        App.currentUser = newUser;
+
+                        App.currentUser.USER_ID = int.Parse(command.Parameters["OUT_ID"].Value.ToString());
                         //con.Close();
                     }
-                    App.currentUser = newUser;
                     //App.currentUser.USER_ID = int.Parse(dr["USER_ID"].ToString()); --get user id , it's better to get id from out parameter
 
                     Workframe workframe = new Workframe();

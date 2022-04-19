@@ -38,7 +38,7 @@
             <StackPanel DockPanel.Dock="Right"
                         HorizontalAlignment="Right"
                         Orientation="Horizontal">
-                <TextBlock Text="{Binding FormattedPrice}"
+                <TextBlock Text="{Binding PRICE}"
                            HorizontalAlignment="Right"/>
                 <materialDesign:PackIcon Kind="CartVariant"
                                          Opacity="{Binding IsInBasket}"

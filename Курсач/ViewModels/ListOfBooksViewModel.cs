@@ -34,18 +34,8 @@ namespace Курсач.ViewModels
             }
         }
         public ObservableCollection<GENRES> Genres { get; private set; }
-        GENRES selectedGenre;
-        public GENRES SelectedGenre
-        {
-            get { return selectedGenre; }
-            set
-            {
-                selectedGenre = value;
-                OnPropertyChanged("SelectedGenre");
-            }
-        }
-        BOOKS selectedBook;
-        public BOOKS SelectedBook
+        Book selectedBook;
+        public Book SelectedBook
         {
             get { return selectedBook; }
             set
@@ -127,16 +117,28 @@ namespace Курсач.ViewModels
 
         private void OpenFullInfoUserControl(object obj) // Open page with extended info
         {
-            //foreach (GENRES genre in App.db.GENRES.ToList()) //we are looking for our book in GENRES...
-            //{
-            //    if (genre.GENRE_ID == SelectedBook.GENRE)
-            //        SelectedBook.Genre = genre.GENRE; //... and when we find it we write it in the notmapped property
-            //}
+            OracleCommand cmd = new OracleCommand();
+            //Books = new ObservableCollection<Book>();
+            string genre = "";
+            cmd.CommandText = "select g.genre from system.genres g inner join system.books b on g.genre_id = " + SelectedBook.GENRE;
+            cmd.Connection = con;
+            con.Open();
+            OracleDataReader dr = cmd.ExecuteReader();
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    genre = dr["GENRE"].ToString();
+                }
+            }
+
+            SelectedBook.GENRE_NAME = genre; //... and when we find it we write it in the notmapped property
             //SelectedBook.NUMBEROFVOICES = App.db.MARKS.Where(n => n.BOOK_ID == SelectedBook.BOOK_ID).Count(); //counting marks to write in notmapped property
             //MARKS mark = App.db.MARKS.FirstOrDefault(n => (n.USER_ID == App.currentUser.USER_ID) && (n.BOOK_ID == SelectedBook.BOOK_ID));
             //SelectedBook.Mark = mark != null ? (int)mark.MARK : 0;
-            //FullInfoViewModelSingleTone.GetInstance(new FullInfoViewModel()).FullInfoViewModel.CurrentBook = SelectedBook;
-            //WorkFrameSingleTone.GetInstance().WorkframeViewModel.CurrentPageViewModel = new AdditionalInfoViewModel();
+            FullInfoViewModelSingleTone.GetInstance(new FullInfoViewModel()).FullInfoViewModel.CurrentBook = SelectedBook;
+            WorkFrameSingleTone.GetInstance().WorkframeViewModel.CurrentPageViewModel = new AdditionalInfoViewModel();
+            con.Close();
         }
         #endregion
 
@@ -155,34 +157,35 @@ namespace Курсач.ViewModels
                 {
                     while (dr.Read())
                     {
-                        Books.Add(new Book(dr["TITLE"].ToString(), dr["AUTHOR"].ToString(), null, decimal.Parse(dr["PRICE"].ToString()), dr["COVER"].ToString(),
+                        Books.Add(new Book(dr["TITLE"].ToString(), dr["AUTHOR"].ToString(), int.Parse(dr["GENRE"].ToString()), decimal.Parse(dr["PRICE"].ToString()), dr["COVER"].ToString(),
                             int.Parse(dr["BY_SUBSCRIPTION"].ToString()), decimal.Parse(dr["RATING"].ToString()), dr["DESCRIPTION"].ToString(), dr["LINK"].ToString()));
                     }
                 }
                 //Books = new ObservableCollection<BOOKS>(App.db.BOOKS);
-                        //var shelfBooks = App.db.YOUR_BOOKS.Where(n => n.USER_ID == App.currentUser.USER_ID);
-                        //foreach (var book in shelfBooks)
-                        //{
-                        //    var bookToRemove = Books.FirstOrDefault(n => n.BOOK_ID == book.BOOK_ID);
-                        //    if (bookToRemove != null)
-                        //    {
-                        //        Books.Remove(bookToRemove);
-                        //    }
-                        //}
-                        //var basketBooks = App.db.BASKETS.Where(n => n.USER_ID == App.currentUser.USER_ID);
-                        //foreach (var book in Books)
-                        //{
-                        //    //if (basketBooks.FirstOrDefault(n => n.BOOK_ID == book.BOOK_ID) != null)
-                        //    //{
-                        //    //    book.IsInBasket = 1;
-                        //    //}
-                        //    //else
-                        //    //{
-                        //    //    book.IsInBasket = 0;
-                        //    //}
-                        //}
-                        //Genres = new ObservableCollection<GENRES>(App.db.GENRES.OrderBy(n => n.GENRE));
-                    }
+                //var shelfBooks = App.db.YOUR_BOOKS.Where(n => n.USER_ID == App.currentUser.USER_ID);
+                //foreach (var book in shelfBooks)
+                //{
+                //    var bookToRemove = Books.FirstOrDefault(n => n.BOOK_ID == book.BOOK_ID);
+                //    if (bookToRemove != null)
+                //    {
+                //        Books.Remove(bookToRemove);
+                //    }
+                //}
+                //var basketBooks = App.db.BASKETS.Where(n => n.USER_ID == App.currentUser.USER_ID);
+                //foreach (var book in Books)
+                //{
+                //    //if (basketBooks.FirstOrDefault(n => n.BOOK_ID == book.BOOK_ID) != null)
+                //    //{
+                //    //    book.IsInBasket = 1;
+                //    //}
+                //    //else
+                //    //{
+                //    //    book.IsInBasket = 0;
+                //    //}
+                //}
+                //Genres = new ObservableCollection<GENRES>(App.db.GENRES.OrderBy(n => n.GENRE));
+                con.Close();       
+            }
             catch (Exception ex)
             {
                 App.notifier.ShowError(ex.Message);

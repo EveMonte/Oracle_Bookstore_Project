@@ -28,7 +28,7 @@
         <Image Source="/Media/ЛентаАбонемент.png"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
-               Opacity="{Binding Subscription}"/>
+               Opacity="{Binding BY_SUBSCRIPTION}"/>
         <StackPanel Grid.Row="0"
                     Grid.Column="1"
                     HorizontalAlignment="Stretch">
@@ -45,7 +45,7 @@
             </StackPanel>
             <TextBlock FontSize="16"
                        Margin="15, 5, 0, 0"
-                       Text="{Binding Genre}"
+                       Text="{Binding GENRE_NAME}"
                        HorizontalAlignment="Left"/>
             <StackPanel Margin="15, 5, 0, 0"
                         Orientation="Horizontal"
